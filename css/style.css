@@ -330,25 +330,24 @@ nav {
 
 /* --- EVENTS GALLERY --- */
 .event-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 20px;
     margin-bottom: 50px;
 }
 
 .gallery-img {
-    width: 100%;
+    width: 250px;
     height: 220px;
     object-fit: cover;
     border: 2px solid #333;
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease;
-    filter: grayscale(80%);
 }
 
 .gallery-img:hover {
-    filter: grayscale(0%);
     border-color: var(--neon-orange);
     box-shadow: 0 0 15px rgba(255, 102, 0, 0.4);
     transform: scale(1.05);
@@ -359,10 +358,8 @@ nav {
 /* --- LIGHTBOX MODAL --- */
 .lightbox {
     display: none;
-    /* Hidden initially */
     position: fixed;
     z-index: 999999;
-    /* Sit on top of everything including scanlines */
     left: 0;
     top: 0;
     width: 100%;
@@ -429,19 +426,17 @@ nav {
     letter-spacing: 2px;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+.grid,
+.coordinator-grid,
+.senior-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 30px;
 }
 
-.coordinator-grid,
-.senior-grid {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 350px));
-    justify-content: center;
-}
-
 .cyber-card {
+    width: 280px;
     background: var(--bg-card);
     border: 1px solid #333;
     border-top: 4px solid var(--neon-orange);
@@ -464,12 +459,14 @@ nav {
     height: 140px;
     border: 2px solid var(--neon-orange);
     margin-bottom: 20px;
-    filter: grayscale(100%);
     transition: 0.3s;
+    object-fit: cover;
+    cursor: pointer;
 }
 
 .cyber-card:hover img {
-    filter: grayscale(0%);
+    box-shadow: 0 0 15px rgba(255, 102, 0, 0.6);
+    transform: scale(1.05);
 }
 
 .cyber-card h4 {
@@ -571,10 +568,12 @@ nav {
         padding: 60px 15px;
     }
 
+    /* THE FIX FOR THE MOBILE NAVBAR SPACING */
     nav {
         flex-direction: column;
         padding: 15px;
-        gap: 15px;
+        gap: 20px;
+        /* Gives more breathing room between the logo and the links */
     }
 
     .nav-brand {
@@ -587,9 +586,13 @@ nav {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 10px;
+        row-gap: 15px;
+        /* Adds 15px of vertical space between wrapped buttons */
+        column-gap: 10px;
+        /* Adds horizontal space between buttons */
         border-top: 1px dashed rgba(255, 102, 0, 0.4);
-        padding-top: 15px;
+        padding-top: 20px;
+        /* Pushes the buttons further down from the dashed line */
     }
 
     .nav-links a {
@@ -600,20 +603,23 @@ nav {
         border-radius: 4px;
     }
 
+    .cyber-card {
+        width: 100%;
+        max-width: 350px;
+    }
+
     .grid,
     .coordinator-grid,
     .senior-grid {
-        grid-template-columns: 1fr;
         gap: 20px;
     }
 
-    /* Makes the photo gallery show 2 columns side-by-side on mobile */
     .event-grid {
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
         gap: 10px;
     }
 
     .gallery-img {
+        width: calc(50% - 10px);
         height: 140px;
     }
 
